@@ -106,6 +106,16 @@ Phase 0: offline simulator + static policy + attack library + tests.
 Planned: anomaly baseline, live agent adapter, autonomous red-team loop
 (matches the sibling `sentinel` roadmap).
 
+## Architecture
+
+```mermaid
+flowchart LR
+  P[scripted plan] --> A[simulated agent]
+  A -->|action log| J[policy judge]
+  AT[attack primitive] --> A
+  J -->|ALLOW / FLAG / DENY| R[JSON report]
+```
+
 ## License
 
 MIT.
