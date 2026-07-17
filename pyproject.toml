@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sentinel-red"
+version = "0.1.0"
+description = "Autonomous red-team harness: attacks a simulated AI agent and grades it against a Sentinel-style policy."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = ["ai-security", "red-team", "agent", "policy", "sentinel"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Security",
+]
+
+[project.urls]
+Homepage = "https://github.com/JUS7205/sentinel-red"
+
+[tool.setuptools.packages.find]
+include = ["sentinel_red*"]
