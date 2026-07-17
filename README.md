@@ -1,5 +1,7 @@
 # sentinel-red
 
+[![CI](https://github.com/JUS7205/sentinel-red/actions/workflows/ci.yml/badge.svg)](https://github.com/JUS7205/sentinel-red/actions/workflows/ci.yml)
+
 > Autonomous red-team harness for AI agents — runtime defense facet of the
 > `sentinel` family.
 

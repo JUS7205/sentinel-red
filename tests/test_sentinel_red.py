@@ -146,7 +146,6 @@ def test_all_bundled_attacks_detected_by_policy():
 # ---------------------------------------------------------------------------
 
 def test_runner_produces_valid_json(tmp_path):
-    out = tmp_path / "report.json"
     proc = subprocess.run(
         [sys.executable, "-m", "sentinel_red"],
         capture_output=True, text=True,
