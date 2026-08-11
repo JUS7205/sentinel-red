@@ -23,7 +23,6 @@ from sentinel_red.attacks import (
 from sentinel_red.policy import ALLOW, DENY, FLAG, judge
 from sentinel_red.sim import AgentSim, Step
 
-
 # ---------------------------------------------------------------------------
 # 1. Each attack succeeds vs the undefended simulator
 # ---------------------------------------------------------------------------
@@ -148,7 +147,7 @@ def test_all_bundled_attacks_detected_by_policy():
 def test_runner_produces_valid_json(tmp_path):
     proc = subprocess.run(
         [sys.executable, "-m", "sentinel_red"],
-        capture_output=True, text=True,
+        capture_output=True, text=True, check=False,
     )
     assert proc.returncode == 0, proc.stderr
     report = json.loads(proc.stdout)
@@ -167,7 +166,7 @@ def test_runner_produces_valid_json(tmp_path):
 def test_runner_json_is_parseable_directly():
     proc = subprocess.run(
         [sys.executable, "-m", "sentinel_red"],
-        capture_output=True, text=True,
+        capture_output=True, text=True, check=False,
     )
     report = json.loads(proc.stdout)
     assert isinstance(report, list) and len(report) >= 4
