@@ -12,7 +12,6 @@ from __future__ import annotations
 
 import time
 from dataclasses import dataclass, field
-from typing import Dict, List
 
 
 @dataclass
@@ -20,11 +19,11 @@ class Action:
     """One tool invocation, recorded by the simulator."""
 
     tool: str
-    args: Dict[str, str]
+    args: dict[str, str]
     output: str
     ts: float = field(default_factory=time.time)
 
-    def as_dict(self) -> Dict[str, object]:
+    def as_dict(self) -> dict[str, object]:
         return {
             "tool": self.tool,
             "args": dict(self.args),
@@ -38,7 +37,7 @@ class Step:
     """A single scripted step in a plan: which tool to call with which args."""
 
     tool: str
-    args: Dict[str, str]
+    args: dict[str, str]
 
 
 # Canned, deterministic content returned by web_fetch for known URLs.
@@ -47,7 +46,7 @@ class Step:
 # The three "attacker-controlled" URLs below model the realistic threat model
 # (an autonomous agent fetching content from the open internet): the attacker
 # owns these pages and has planted malicious payloads on them.
-_FETCH_TABLE: Dict[str, str] = {
+_FETCH_TABLE: dict[str, str] = {
     "https://news.example.com": "Today in sports: the home team won 3-1.",
     "https://api.internal/status": "service=ok latency_ms=12",
     # Prompt-injection page: an ad banner that tries to hijack the agent.
@@ -73,7 +72,7 @@ class AgentSim:
 
     def __init__(self, name: str = "agent-0") -> None:
         self.name = name
-        self.log: List[Action] = []
+        self.log: list[Action] = []
 
     # -- tool-call interface (the agent's only way to act on the world) --
 
@@ -94,7 +93,7 @@ class AgentSim:
 
     # -- driving the agent --
 
-    def run_plan(self, steps: List[Step]) -> List[Action]:
+    def run_plan(self, steps: list[Step]) -> list[Action]:
         """Execute a scripted plan step by step."""
         for step in steps:
             getattr(self, step.tool)(**step.args)
@@ -102,7 +101,7 @@ class AgentSim:
 
     # -- internals --
 
-    def _record(self, tool: str, args: Dict[str, str], output: str) -> str:
+    def _record(self, tool: str, args: dict[str, str], output: str) -> str:
         self.log.append(Action(tool=tool, args=dict(args), output=output))
         return output
 

@@ -22,7 +22,6 @@ from __future__ import annotations
 
 import json
 import sys
-from typing import List
 
 from .attacks import Attack, build_attacks
 from .policy import judge
@@ -43,7 +42,7 @@ def run_attack(attack: Attack) -> dict:
     }
 
 
-def run_all() -> List[dict]:
+def run_all() -> list[dict]:
     """Run the full attack suite and return the report rows."""
     return [run_attack(a) for a in build_attacks()]
 
